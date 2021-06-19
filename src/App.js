@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import "./styles/base.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Searchbar from "./components/Searchbar";
+import ImageGallery from "./components/ImageGallery";
+import Button from "./components/Button";
+// import Modal from './components/Modal';
+// import fetchImages from './services/pixabay-api';
+import imagesApi from "./services/pixabay-api";
+
+class App extends Component {
+  state = {
+    searchQuery: "",
+    currentPage: 1,
+  };
+  // componentDidMount(){
+  //   console.log('componentDidMount');
+  //   fetchImages.fetchImages()
+  // }
+  fetchImages = () => {
+    const { searchQuery, currentPage } = this.state;
+    const options = { searchQuery, currentPage };
+    imagesApi.fetchImages(options);
+  };
+
+  search = () => null;
+  render() {
+    return (
+      <div className="App">
+        <Searchbar onSubmit={this.fetchImages} />
+        <ImageGallery />
+        <Button />
+      </div>
+    );
+  }
 }
 
 export default App;
