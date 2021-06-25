@@ -9,11 +9,20 @@ export default class Button extends Component {
   static propTypes = {
     onClick: PropTypes.func,
   };
+  // onLoadMore= () => {
+  //   window.scrollTo({
+  //     top: document.documentElement.scrollHeight,
+  //     behavior: "smooth",
+  //   });
+  //   this.props.onClick();
+  // }
+
   render() {
     return (
       <button
         type="button"
         onClick={this.props.onClick}
+        // onClick={this.onLoadMore}
         className={styles.Button}
       >
         Load more
